@@ -1,6 +1,10 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from .forms import UserRegistrationForm
+from django.contrib.auth.decorators import login_required
+from .models import Task
+from django.core.exceptions import ObjectDoesNotExist
+
 
 # Create your views here.
 
@@ -16,3 +20,8 @@ def register(request):
             # TODO: update with home screen url
         return render(request,"registration/register.html",{"form":newUserForm})
     return render(request,"registration/register.html",{"form":UserRegistrationForm()})
+
+@login_required
+def showTask(request,taskId):
+    task = get_object_or_404(Task, id = taskId, user = request.user)
+    return render(request,"matrix/task.html",{"task":task})
