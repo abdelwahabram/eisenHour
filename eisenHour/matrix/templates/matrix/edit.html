@@ -1,0 +1,9 @@
+{% extends "matrix/layout.html" %}
+{% block body %}
+{% load crispy_forms_tags %}
+    <form method="post" action="{% url 'edit' taskId %}">
+        {% csrf_token %}
+        {{form|crispy}}
+        <input type="submit" class="btn btn-success" value="edit task"> 
+    </form>
+{% endblock %}
