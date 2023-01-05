@@ -39,3 +39,16 @@ def addTask(request):
             # TODO: update with home screen url
         return render(request,"matrix/add.html",{"form":taskForm})
     return render(request,"matrix/add.html",{"form":TaskForm()})
+
+
+@login_required
+def editTask(request, taskId):
+    task = get_object_or_404(Task, id = taskId, user = request.user)
+    if request.method == "POST":
+        taskForm = TaskForm(request.POST, instance=task)
+        if taskForm.is_valid():
+            taskForm.save()
+            return redirect("first")
+            # TODO: update with home screen url
+        return render(request,"matrix/edit.html",{"form":taskForm,"taskId":taskId})
+    return render(request,"matrix/edit.html",{"form":TaskForm(instance=task),"taskId":taskId})
