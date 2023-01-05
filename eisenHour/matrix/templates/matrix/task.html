@@ -1,0 +1,22 @@
+{% extends "matrix/layout.html" %}
+{% block body %}
+<h1>{{task.title}}</h1>
+<p>{{task.description}}</p>
+<p>due date: {{task.date}}</p>
+{% if task.importance %}
+<p>Important!!!</p>
+{% else %}
+<p>not important</p>
+{% endif %}
+{% if task.status %}
+<p>Letss do it</p>
+<form method="post" action="#">
+    {% csrf_token %}
+    <input type="submit" value="done" class="btn btn-success">
+</form>
+<a type="button" class="btn btn-secondary">edit task</a>
+{% else %}
+<p>done100%%</p>
+{% endif %}
+
+{% endblock %}
