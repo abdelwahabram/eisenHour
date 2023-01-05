@@ -16,7 +16,7 @@ class Task(models.Model):
     importance = models.BooleanField()
     status = models.BooleanField(default=True)
     user = models.ForeignKey(User, null=True, on_delete=models.CASCADE, related_name="tasks")
-    def save(self, *args, **kwargs):
+    def clean(self, *args, **kwargs):
+        super(Task, self).clean(*args, **kwargs)
         if self.date < timezone.now().date():
             raise ValidationError("The date cannot be in the past!")
-        super(Task, self).save(*args, **kwargs)
