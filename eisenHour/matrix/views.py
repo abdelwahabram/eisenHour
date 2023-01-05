@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .forms import UserRegistrationForm
 
@@ -12,4 +12,7 @@ def register(request):
         newUserForm = UserRegistrationForm(request.POST)
         if newUserForm.is_valid():
             newUserForm.save()
+            return redirect("first")
+            # TODO: update with home screen url
+        return render(request,"registration/register.html",{"form":newUserForm})
     return render(request,"registration/register.html",{"form":UserRegistrationForm()})
