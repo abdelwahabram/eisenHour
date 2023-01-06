@@ -58,7 +58,7 @@ def editTask(request, taskId):
 def finishTask(request, taskId):
     task = get_object_or_404(Task, id = taskId, user = request.user)
     if request.method == "POST":
-        task.status = False
+        task.status = False if task.status == True else  True
         task.save()
         return redirect("task", taskId)
     return HttpResponseNotAllowed("wrong operation")
