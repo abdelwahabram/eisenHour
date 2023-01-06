@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseNotAllowed
 from .forms import UserRegistrationForm, TaskForm
 from django.contrib.auth.decorators import login_required
 from .models import Task
@@ -52,3 +52,13 @@ def editTask(request, taskId):
             # TODO: update with home screen url
         return render(request,"matrix/edit.html",{"form":taskForm,"taskId":taskId})
     return render(request,"matrix/edit.html",{"form":TaskForm(instance=task),"taskId":taskId})
+
+
+@login_required
+def finishTask(request, taskId):
+    task = get_object_or_404(Task, id = taskId, user = request.user)
+    if request.method == "POST":
+        task.status = False
+        task.save()
+        return redirect("task", taskId)
+    return HttpResponseNotAllowed("wrong operation")
