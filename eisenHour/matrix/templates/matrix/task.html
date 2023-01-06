@@ -17,6 +17,10 @@
 <a type="button" class="btn btn-secondary">edit task</a>
 {% else %}
 <p>done100%%</p>
+<form method="post" action="{% url 'done' task.id %}">
+    {% csrf_token %}
+    <input type="submit" value="undone" class="btn btn-success">
+</form>
 {% endif %}
 
 {% endblock %}
