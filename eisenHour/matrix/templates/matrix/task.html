@@ -10,7 +10,7 @@
 {% endif %}
 {% if task.status %}
 <p>Letss do it</p>
-<form method="post" action="#">
+<form method="post" action="{% url 'done' task.id %}">
     {% csrf_token %}
     <input type="submit" value="done" class="btn btn-success">
 </form>
