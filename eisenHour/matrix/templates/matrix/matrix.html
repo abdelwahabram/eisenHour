@@ -1,5 +1,12 @@
 {% extends "matrix/layout.html" %}
+{% load crispy_forms_tags %}
 {% block body %}
+<div>current duration : {{user.urgencyTimeRange}}</div>
+<form method="post" action="{% url 'duration' %}">
+    {% csrf_token %}
+    {{urgencyForm|crispy}}
+    <input type="submit" class="btn btn-success" value="change"> 
+</form>
 <table class="table table-dark table-striped-columns">
     <thead>
         <tr>
