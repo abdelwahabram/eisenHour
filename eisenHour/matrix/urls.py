@@ -9,5 +9,6 @@ urlpatterns = [
     path("task/<int:taskId>", views.showTask, name="task"),
     path("task/add", views.addTask, name="add"),
     path("edit/<int:taskId>", views.editTask, name="edit"),
-    path("done/<int:taskId>", views.finishTask, name="done"),    
+    path("done/<int:taskId>", views.finishTask, name="done"),
+    path("change-duration", views.changeUrgencyTimeRange,name="duration")    
 ]
