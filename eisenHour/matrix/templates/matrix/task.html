@@ -14,7 +14,7 @@
     {% csrf_token %}
     <input type="submit" value="done" class="btn btn-success">
 </form>
-<a type="button" class="btn btn-secondary">edit task</a>
+<a type="button" class="btn btn-secondary" href="{% url 'edit' task.id %}">edit task</a>
 {% else %}
 <p>done100%%</p>
 <form method="post" action="{% url 'done' task.id %}">
