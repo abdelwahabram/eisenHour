@@ -68,7 +68,7 @@ def finishTask(request, taskId):
 
 
 @login_required
-def showMyMatrix(request):
+def showMatrix(request):
     user = request.user
     today = datetime.today()
     urgentTasksDate = today + user.urgencyTimeRange
