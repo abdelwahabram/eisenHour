@@ -1,0 +1,14 @@
+{% extends "matrix/layout.html" %}
+{% block body %}
+{% for task in archivedTasks %}
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+        <h5 class="card-title">{{task.title}}</h5>
+        <p class="card-text">{{task.description}}</p>
+        <a href="{% url 'task' task.id %}" class="card-link">view task</a>
+        </div>
+    </div>
+{% empty %}
+<h2>No tasks here yet</h2>
+{% endfor %}
+{% endblock %}
