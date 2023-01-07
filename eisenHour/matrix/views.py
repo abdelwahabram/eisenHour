@@ -96,3 +96,9 @@ def changeUrgencyTimeRange(request):
             user.save()
     return redirect("matrix")
 
+
+@login_required
+def showArchive(request):
+    user = request.user
+    archivedTasks = user.tasks.filter(status=False)
+    return render(request,"matrix/archive.html",{"archivedTasks":archivedTasks})
