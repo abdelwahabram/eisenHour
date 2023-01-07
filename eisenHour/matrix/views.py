@@ -4,9 +4,11 @@ from .forms import UserRegistrationForm, TaskForm
 from django.contrib.auth.decorators import login_required
 from .models import Task
 from django.core.exceptions import ObjectDoesNotExist
-
+from datetime import *
+import itertools
 
 # Create your views here.
+
 
 def first(request):
     return HttpResponse("awesome")
@@ -63,3 +65,22 @@ def finishTask(request, taskId):
         task.save()
         return redirect("task", taskId)
     return HttpResponseNotAllowed("wrong operation")
+
+
+@login_required
+def showMyMatrix(request):
+    user = request.user
+    today = datetime.today()
+    urgentTasksDate = today + user.urgencyTimeRange
+    urgentAndImportantTasks = user.tasks.filter(
+        status=True, importance=True, date__lt=urgentTasksDate)
+    importantTasks = user.tasks.filter(
+        status=True, importance=True, date__gt=urgentTasksDate)
+    urgentTasks = user.tasks.filter(
+        status=True, importance=False, date__lt=urgentTasksDate)
+    notUrgentNotImportantTasks = user.tasks.filter(
+        status=True, importance=False, date__gt=urgentTasksDate)
+    firstRow = itertools.zip_longest(urgentAndImportantTasks, importantTasks)
+    secondRow = itertools.zip_longest(
+        urgentTasks, notUrgentNotImportantTasks, fillvalue=None)
+    return render(request, "matrix/matrix.html", {"firstRow": firstRow, "secondRow": secondRow})
