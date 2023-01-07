@@ -2,11 +2,12 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.core.exceptions import ValidationError
 from django.utils import timezone
+from datetime import timedelta
 
 # Create your models here.
 
 class User(AbstractUser):
-    pass
+    urgencyTimeRange = models.DurationField(default=timedelta(days=3))
 
 
 class Task(models.Model):
