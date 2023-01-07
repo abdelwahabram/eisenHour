@@ -1,0 +1,49 @@
+{% extends "matrix/layout.html" %}
+{% block body %}
+<table class="table table-dark table-striped-columns">
+    <thead>
+        <tr>
+            <th scope="col">urgent and important</th>
+            <th scope="col">important</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for task1, task2 in firstRow %}
+        <tr>
+            {% if task1 %}
+            <td><a href="{% url 'task' task1.id %}" class="btn btn-dark">{{task1.title}}</a></td>
+            {% else %}
+            <td></td>
+            {% endif %}
+            {% if task2 %}
+            <td><a href="{% url 'task' task2.id %}" class="btn btn-dark">{{task2.title}}</a></td>
+            {% else %}
+            <td></td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+    </tbody>
+    <thead>
+        <tr>
+            <th scope="col">urgent and important</th>
+            <th scope="col">important</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for task1, task2 in secondRow %}
+        <tr>
+            {% if task1 %}
+            <td><a href="{% url 'task' task1.id %}" class="btn btn-dark">{{task1.title}}</a></td>
+            {% else %}
+            <td></td>
+            {% endif %}
+            {% if task2 %}
+            <td><a href="{% url 'task' task2.id %}" class="btn btn-dark">{{task2.title}}</a></td>
+            {% else %}
+            <td></td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
