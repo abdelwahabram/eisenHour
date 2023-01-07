@@ -18,3 +18,7 @@ class TaskForm(ModelForm):
 		widgets = {
             'date': widgets.DateInput(attrs={'type': 'date'})
         }
+
+
+class UrgencyDurationForm(forms.Form):
+	duration = forms.DurationField()
