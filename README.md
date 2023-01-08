@@ -4,4 +4,4 @@ task management technique for prioritizing tasks
 
 
 # credits:
-countdown timer component: https://codepen.io/dcode-software
+reused countdown timer component from : https://codepen.io/dcode-software
