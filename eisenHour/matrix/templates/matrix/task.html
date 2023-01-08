@@ -10,6 +10,7 @@
 {% endif %}
 {% if task.status %}
 <p>Letss do it</p>
+<div class="timer"></div>
 <form method="post" action="{% url 'done' task.id %}">
     {% csrf_token %}
     <input type="submit" value="done" class="btn btn-success">
@@ -22,5 +23,4 @@
     <input type="submit" value="undone" class="btn btn-success">
 </form>
 {% endif %}
-
 {% endblock %}
