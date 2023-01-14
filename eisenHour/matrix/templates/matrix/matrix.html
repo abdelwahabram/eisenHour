@@ -28,12 +28,15 @@
             <td></td>
             {% endif %}
         </tr>
+        {% empty %}
+        <td>no tasks here yet</td>
+        <td>no tasks here yet</td>
         {% endfor %}
     </tbody>
     <thead>
         <tr>
-            <th scope="col">urgent and important</th>
-            <th scope="col">important</th>
+            <th scope="col">urgent</th>
+            <th scope="col">neither urgent nor important</th>
         </tr>
     </thead>
     <tbody>
@@ -50,6 +53,9 @@
             <td></td>
             {% endif %}
         </tr>
+        {% empty %}
+        <td>no tasks here yet</td>
+        <td>no tasks here yet</td>
         {% endfor %}
     </tbody>
 </table>
