@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, HttpResponseNotAllowed
 from .forms import UserRegistrationForm, TaskForm, UrgencyDurationForm
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import login
 from .models import Task
 from django.core.exceptions import ObjectDoesNotExist
 from datetime import *
@@ -18,7 +19,8 @@ def register(request):
     if request.method == "POST":
         newUserForm = UserRegistrationForm(request.POST)
         if newUserForm.is_valid():
-            newUserForm.save()
+            newUser = newUserForm.save()
+            login(request, newUser)
             return redirect("matrix")
         return render(request, "registration/register.html", {"form": newUserForm})
     return render(request, "registration/register.html", {"form": UserRegistrationForm()})
