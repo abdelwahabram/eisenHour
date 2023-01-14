@@ -2,7 +2,7 @@ from . import views
 from django.urls import path, include
 
 urlpatterns = [
-    path("", views.first, name="first"),
+    path("", views.main, name="main"),
     path("matrix", views.showMatrix, name="matrix"),
     path("register", views.register, name="register"),
     path('accounts/', include('django.contrib.auth.urls')),
