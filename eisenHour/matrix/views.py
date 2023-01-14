@@ -19,8 +19,7 @@ def register(request):
         newUserForm = UserRegistrationForm(request.POST)
         if newUserForm.is_valid():
             newUserForm.save()
-            return redirect("first")
-            # TODO: update with home screen url
+            return redirect("matrix")
         return render(request, "registration/register.html", {"form": newUserForm})
     return render(request, "registration/register.html", {"form": UserRegistrationForm()})
 
@@ -38,8 +37,7 @@ def addTask(request):
         taskForm = TaskForm(request.POST, instance=newTask)
         if taskForm.is_valid():
             taskForm.save()
-            return redirect("first")
-            # TODO: update with home screen url
+            return redirect("task", newTask.id)
         return render(request, "matrix/add.html", {"form": taskForm})
     return render(request, "matrix/add.html", {"form": TaskForm()})
 
@@ -51,8 +49,7 @@ def editTask(request, taskId):
         taskForm = TaskForm(request.POST, instance=task)
         if taskForm.is_valid():
             taskForm.save()
-            return redirect("first")
-            # TODO: update with home screen url
+            return redirect("task", taskId)
         return render(request, "matrix/edit.html", {"form": taskForm, "taskId": taskId})
     return render(request, "matrix/edit.html", {"form": TaskForm(instance=task), "taskId": taskId})
 
