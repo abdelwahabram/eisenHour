@@ -10,8 +10,8 @@ import itertools
 # Create your views here.
 
 
-def first(request):
-    return HttpResponse("awesome")
+def main(request):
+    return render(request, "matrix/main.html")
 
 
 def register(request):
