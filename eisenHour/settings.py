@@ -27,6 +27,9 @@ SECRET_KEY = 'django-insecure--cqsinx39mjp6v$4nbi^9j4kg7u44hkai=x#_oj-d)0fb*d*k0
 DEBUG = False
 
 ALLOWED_HOSTS = ['*']
+CSRF_TRUSTED_ORIGINS = [
+    'https://eisenhour-production.up.railway.app/'
+]
 
 
 # Application definition
