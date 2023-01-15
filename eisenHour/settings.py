@@ -28,7 +28,7 @@ DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 CSRF_TRUSTED_ORIGINS = [
-    'https://eisenhour-production.up.railway.app/'
+    'https://eisenhour-production.up.railway.app'
 ]
 
 
